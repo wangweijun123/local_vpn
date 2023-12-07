@@ -198,16 +198,19 @@ public class LocalVPNService extends VpnService
                         Packet packet = new Packet(bufferToNetwork);
                         if (packet.isUDP())
                         {
+                            Log.w(TAG, "这是udp 协议数据包");
                             deviceToNetworkUDPQueue.offer(packet);
                         }
                         else if (packet.isTCP())
                         {
+                            Log.w(TAG, "这是tcp 协议数据包");
                             deviceToNetworkTCPQueue.offer(packet);
                         }
                         else
                         {
                             Log.w(TAG, "Unknown packet type");
                             Log.w(TAG, packet.ip4Header.toString());
+                            Log.w(TAG, "数据包内容："+ packet.toString());
                             dataSent = false;
                         }
                     }
